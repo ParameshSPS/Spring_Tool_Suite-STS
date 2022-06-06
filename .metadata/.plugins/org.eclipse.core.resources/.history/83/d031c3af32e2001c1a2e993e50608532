@@ -1,0 +1,17 @@
+package com.zensar;
+
+import java.net.http.HttpClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import io.netty.resolver.DefaultAddressResolverGroup;
+
+@Configuration
+public class APIGatewayConfiguration {
+	
+	@Bean
+    public HttpClient webClient()
+    {
+        return HttpClient.create().resolver(DefaultAddressResolverGroup.INSTANCE);
+    }
+}

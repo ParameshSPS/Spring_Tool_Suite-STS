@@ -1,0 +1,9 @@
+package com.zensar.displayservice.feign.client;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient(value = "messageservice", url = "")
+public interface MessageFeignClient {
+
+	
+}

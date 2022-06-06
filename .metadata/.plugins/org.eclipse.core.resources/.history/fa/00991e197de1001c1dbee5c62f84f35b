@@ -1,0 +1,17 @@
+package com.zensar.displayservice.rest.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class DisplayRestController {
+	
+	@GetMapping("/api/display")
+	public String printMessage() 
+	{
+		// This method to talk to messageMicroservice (seperate Application) and get the message ?
+		// RestTemplate can be used but it is better to use spring cloud APIs
+		
+		return "";
+	}
+}

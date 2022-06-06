@@ -1,0 +1,26 @@
+package com.zensar.bean.pack2;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "course10")
+public class Course {
+	
+	@Id
+	@Column
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int courseId;
+	@Column
+	String courseName;
+	@Column
+	double fees;
+	
+	Set<Subject> subjects;
+}

@@ -1,0 +1,15 @@
+package com.zensar.messageapi.security.jwt.filter;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+// This class is used to fetch token and check if it is valid
+public class JWTFilter extends BasicAuthenticationFilter {
+
+	public JWTFilter(AuthenticationManager authenticationManager) {
+		super(authenticationManager);
+	}
+	
+	
+
+}

@@ -1,0 +1,51 @@
+package com.zensar.messageapi.security.jwt.filter;
+
+import java.io.IOException;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+
+import com.zensar.messageapi.security.jwt.util.JWTUtil;
+
+// This class is used to fetch token and check if it is valid
+public class JWTFilter extends BasicAuthenticationFilter {
+
+	public JWTFilter(AuthenticationManager authenticationManager) {
+		super(authenticationManager);
+	}
+	
+	// doF (ctrl + space)
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		// super.doFilterInternal(request, response, chain);
+		
+		// Bearer token
+		// 1 fetch the token from user request
+		String authorizationHeaderValue = request.getHeader("Authorization");
+		String token = authorizationHeaderValue.substring(7);
+		
+		// validate the token
+		JWTUtil util = new JWTUtil();
+		try {
+			util.validateToken(token);
+			// it valid allow user to acsess resource
+			UsernamePasswordAuthenticationToken authenticationToken;
+			authenticationToken = new UsernamePasswordAuthenticationToken("zensar", null, AuthorityUtils.createAuthorityList("ROLE_USER"));
+		} catch (Exception e) {
+			// it is not valid dont allow user
+			e.printStackTrace();
+			throw e;
+		}
+		
+		// 
+		chain.doFilter(request, response);
+	}
+
+}
