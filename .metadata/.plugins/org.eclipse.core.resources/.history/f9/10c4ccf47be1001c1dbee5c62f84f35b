@@ -1,5 +1,0 @@
-package com.zensar.displayservice.feign.client;
-
-public interface MessageFeignClient {
-
-}

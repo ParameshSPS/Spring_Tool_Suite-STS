@@ -1,5 +1,0 @@
-package com.zensar.messageservice.rest.controller;
-
-public class MessageRestController {
-
-}
